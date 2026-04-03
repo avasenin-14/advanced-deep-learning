@@ -1,5 +1,6 @@
 kagglehub
 matplotlib
 numpy
+scikit-learn
 torch
 torchvision
