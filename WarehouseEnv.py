@@ -3,6 +3,14 @@ import numpy as np
 from gymnasium import spaces
 
 
+DEFAULT_REWARD_CONFIG = {
+    "step_penalty": -0.005,
+    "wall_penalty": -0.05,
+    "goal_reward": 10.0,
+    "progress_bonus": 0.05,
+}
+
+
 class WarehouseEnv(gym.Env):
     def __init__(
         self,
@@ -69,12 +77,7 @@ class WarehouseEnv(gym.Env):
         self.max_steps = int(max_steps) if max_steps is not None else None
         self.step_count = 0
 
-        base_reward = {
-            "step_penalty": -0.01,
-            "wall_penalty": -0.20,
-            "goal_reward": 10.0,
-            "progress_bonus": 0.05,
-        }
+        base_reward = dict(DEFAULT_REWARD_CONFIG)
         if reward_config is not None:
             base_reward.update(reward_config)
         self.reward_config = base_reward
